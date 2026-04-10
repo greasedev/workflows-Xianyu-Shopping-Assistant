@@ -1,0 +1,42 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Workflow (Custom Context)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "--inspect-brk",
+        "${workspaceFolder}/node_modules/.pnpm/tsx@4.21.0/node_modules/tsx/dist/cli.mjs",
+        "${workspaceFolder}/node_modules/@greaseclaw/workflow-sdk/bin/workflow-dev.mjs",
+        "src/default_workflow.ts",
+        "{\"params\":{\"city\":\"北京\",\"area\":\"清河万象汇\",\"shop\":\"霸王茶姬\",\"product\":\"伯牙绝弦\",\"specification\":\"中杯、花香款、微糖、热\",\"quantity\":1}}"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": [
+        "<node_internals>/**",
+        "**/node_modules/**"
+      ]
+    },
+    {
+      "name": "Debug Workflow (Default Context)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "--inspect-brk",
+        "${workspaceFolder}/node_modules/.pnpm/tsx@4.21.0/node_modules/tsx/dist/cli.mjs",
+        "${workspaceFolder}/node_modules/@greaseclaw/workflow-sdk/bin/workflow-dev.mjs",
+        "src/default_workflow.ts"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": [
+        "<node_internals>/**",
+        "**/node_modules/**"
+      ]
+    }
+  ]
+}
