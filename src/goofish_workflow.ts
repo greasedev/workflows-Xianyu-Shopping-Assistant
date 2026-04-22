@@ -15,14 +15,14 @@
  *     description: 目标区域（商圈、商场等）
  *     required: true
  *   - name: shop
- *     description: 目标店铺名称
+ *     description: 目标店铺名称，必须包含商品品牌信息，例如霸王茶姬仁和新城店
  *     required: true
  *   - name: product
  *     description: 要购买的商品名称
  *     required: true
  *   - name: specification
  *     description: 商品规格
- *     required: false
+ *     required: true
  *   - name: quantity
  *     description: 购买数量
  *     required: true

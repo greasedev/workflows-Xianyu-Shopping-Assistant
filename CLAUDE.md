@@ -52,7 +52,7 @@ Session state is managed by `ShoppingSessionStore` in `src/libs/session-store.ts
 
 ### API Endpoints
 
-All APIs return `GoofishApiResponse` with structure:
+All APIs return `ExecutionResult` with structure:
 ```typescript
 {
   success: boolean;

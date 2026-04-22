@@ -6,12 +6,20 @@
 
 import { Agent } from '@greaseclaw/workflow-sdk';
 
-export interface GoofishApiResponse {
+/**
+ * Task status type
+ */
+export type TaskStatus = 'waiting' | 'running' | 'succeeded' | 'failed';
+
+/**
+ * Execution result returned by all API calls
+ */
+export interface ExecutionResult {
   success: boolean;
   error?: string;
   task?: {
     id: string;
-    status: string;
+    status: TaskStatus;
     extract_data?: string;
     metrics_tokens: number;
     metrics_time: number;
@@ -22,13 +30,12 @@ export interface GoofishApiResponse {
  * WorkflowApis interface - methods generated from your API dependencies
  */
 export interface WorkflowApis {
-  login: (username: string, password: string) => Promise<GoofishApiResponse>;
-  check_login: () => Promise<GoofishApiResponse>;
-  get_message: (goods_url: string) => Promise<GoofishApiResponse>;
-  search: (querystring: string) => Promise<GoofishApiResponse>;
-  inquire: (goods_url: string, message: string) => Promise<GoofishApiResponse>;
-  payment: (goods_url: string) => Promise<GoofishApiResponse>;
-  send_hello_in_goofish_chat: () => Promise<GoofishApiResponse>;
+  check_login: () => Promise<ExecutionResult>;
+  get_message: (goods_url: string) => Promise<ExecutionResult>;
+  search: (querystring: string) => Promise<ExecutionResult>;
+  login: (username: string, password: string) => Promise<ExecutionResult>;
+  payment: (goods_url: string) => Promise<ExecutionResult>;
+  inquire: (goods_url: string, message: string) => Promise<ExecutionResult>;
 }
 
 
@@ -38,25 +45,12 @@ export interface WorkflowApis {
 export function createWorkflowApis(agent: Agent): WorkflowApis {
   return {
   /**
-   * Login
-   * Login
-   * @endpoint /v1/custom/login
-   */
-  async login(username: string, password: string): Promise<GoofishApiResponse> {
-    const { data } = await agent.call<GoofishApiResponse>('/v1/custom/login', {
-      method: 'POST',
-      body: { username, password },
-    });
-    return data;
-  },
-
-  /**
    * Check Login
    * Check Login
-   * @endpoint /v1/custom/check_login
+   * @endpoint /v1/custom/check-login-m98qi9
    */
-  async check_login(): Promise<GoofishApiResponse> {
-    const { data } = await agent.call<GoofishApiResponse>('/v1/custom/check_login', {
+  async check_login(): Promise<ExecutionResult> {
+    const { data } = await agent.call<ExecutionResult>('/v1/custom/check-login-m98qi9', {
       method: 'POST',
     });
     return data;
@@ -65,10 +59,10 @@ export function createWorkflowApis(agent: Agent): WorkflowApis {
   /**
    * Get Message
    * Get Message
-   * @endpoint /v1/custom/get_message
+   * @endpoint /v1/custom/get-message-8o1vdh
    */
-  async get_message(goods_url: string): Promise<GoofishApiResponse> {
-    const { data } = await agent.call<GoofishApiResponse>('/v1/custom/get_message', {
+  async get_message(goods_url: string): Promise<ExecutionResult> {
+    const { data } = await agent.call<ExecutionResult>('/v1/custom/get-message-8o1vdh', {
       method: 'POST',
       body: { goods_url },
     });
@@ -78,10 +72,10 @@ export function createWorkflowApis(agent: Agent): WorkflowApis {
   /**
    * Search
    * Search
-   * @endpoint /v1/custom/search
+   * @endpoint /v1/custom/search-wb7yqg
    */
-  async search(querystring: string): Promise<GoofishApiResponse> {
-    const { data } = await agent.call<GoofishApiResponse>('/v1/custom/search', {
+  async search(querystring: string): Promise<ExecutionResult> {
+    const { data } = await agent.call<ExecutionResult>('/v1/custom/search-wb7yqg', {
       method: 'POST',
       body: { querystring },
     });
@@ -89,14 +83,14 @@ export function createWorkflowApis(agent: Agent): WorkflowApis {
   },
 
   /**
-   * Inquire
-   * Inquire
-   * @endpoint /v1/custom/inquire
+   * Login
+   * Login
+   * @endpoint /v1/custom/login-unbav4
    */
-  async inquire(goods_url: string, message: string): Promise<GoofishApiResponse> {
-    const { data } = await agent.call<GoofishApiResponse>('/v1/custom/inquire', {
+  async login(username: string, password: string): Promise<ExecutionResult> {
+    const { data } = await agent.call<ExecutionResult>('/v1/custom/login-unbav4', {
       method: 'POST',
-      body: { goods_url, message },
+      body: { username, password },
     });
     return data;
   },
@@ -104,10 +98,10 @@ export function createWorkflowApis(agent: Agent): WorkflowApis {
   /**
    * Payment
    * Payment
-   * @endpoint /v1/custom/payment
+   * @endpoint /v1/custom/payment-hsv65e
    */
-  async payment(goods_url: string): Promise<GoofishApiResponse> {
-    const { data } = await agent.call<GoofishApiResponse>('/v1/custom/payment', {
+  async payment(goods_url: string): Promise<ExecutionResult> {
+    const { data } = await agent.call<ExecutionResult>('/v1/custom/payment-hsv65e', {
       method: 'POST',
       body: { goods_url },
     });
@@ -115,13 +109,14 @@ export function createWorkflowApis(agent: Agent): WorkflowApis {
   },
 
   /**
-   * Send Hello In Goofish Chat
-   * 进入闲鱼商品详情页，点击“聊一聊”，点击后会进入聊天页面，在消息输入框中输入“你好”，并发送。
-   * @endpoint /v1/custom/send_hello_in_goofish_chat
+   * Inquire
+   * Inquire
+   * @endpoint /v1/custom/inquire-qioe4s
    */
-  async send_hello_in_goofish_chat(): Promise<GoofishApiResponse> {
-    const { data } = await agent.call<GoofishApiResponse>('/v1/custom/send_hello_in_goofish_chat', {
+  async inquire(goods_url: string, message: string): Promise<ExecutionResult> {
+    const { data } = await agent.call<ExecutionResult>('/v1/custom/inquire-qioe4s', {
       method: 'POST',
+      body: { goods_url, message },
     });
     return data;
   },

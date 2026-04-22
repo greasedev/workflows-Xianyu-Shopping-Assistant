@@ -16,7 +16,7 @@ import type {
   WorkflowStage,
 } from "../models/types";
 import { Agent } from "@greaseclaw/workflow-sdk";
-import { GoofishApiResponse, WorkflowApis } from "../api";
+import { ExecutionResult, WorkflowApis } from "../api";
 
 type ShoppingFlowDeps = {
   logger: Logger;
@@ -468,7 +468,7 @@ export function createShoppingFlow(params: ShoppingFlowDeps): ShoppingFlow {
       .join("，");
   }
 
-  function extractLogin(response: GoofishApiResponse): boolean {
+  function extractLogin(response: ExecutionResult): boolean {
     if (response.success && response.task) {
       const data = JSON.parse(response.task.extract_data || "[]");
       if (Array.isArray(data) && data.length > 0) {
@@ -485,18 +485,23 @@ export function createShoppingFlow(params: ShoppingFlowDeps): ShoppingFlow {
     })[0];
   }
 
-  function normalizeGoods(response: GoofishApiResponse): string[] {
+  function normalizeGoods(response: ExecutionResult): string[] {
     if (response.success && response.task) {
       const data = JSON.parse(response.task.extract_data || "[]");
       if (Array.isArray(data) && data.length > 0) {
-        const links = data[0].links || [];
-        return links;
+        const allLinks: string[] = [];
+        for (const item of data) {
+          if (item.links && Array.isArray(item.links)) {
+            allLinks.push(...item.links);
+          }
+        }
+        return allLinks;
       }
     }
     return [];
   }
 
-  function extractQrBase64(response: GoofishApiResponse): string {
+  function extractQrBase64(response: ExecutionResult): string {
     if (response.success && response.task) {
       const data = JSON.parse(response.task.extract_data || "[]");
       if (Array.isArray(data) && data.length > 0) {
@@ -507,7 +512,7 @@ export function createShoppingFlow(params: ShoppingFlowDeps): ShoppingFlow {
   }
 
   function extractLatestText(
-    response: GoofishApiResponse,
+    response: ExecutionResult,
     inquiryMessage: string,
   ): string {
     if (response.success && response.task) {
