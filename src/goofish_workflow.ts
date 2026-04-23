@@ -1,6 +1,6 @@
 /**
  * ---
- * name: 闲鱼购物助手
+ * name: 闲鱼比价下单
  * description: "闲鱼商品比价、代购、下单工作流"
  *
  * use when:
@@ -15,7 +15,7 @@
  *     description: 目标区域（商圈、商场等）
  *     required: true
  *   - name: shop
- *     description: 目标店铺名称，必须包含商品品牌信息，例如霸王茶姬仁和新城店
+ *     description: 目标店铺名称，只包含商品品牌信息，例如霸王茶姬，喜茶，奈雪的茶等
  *     required: true
  *   - name: product
  *     description: 要购买的商品名称

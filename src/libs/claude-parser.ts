@@ -1,12 +1,23 @@
 import type { ClaudeIntentDecision, ClaudeTop3Decision, ShoppingIntent } from "../models/types";
 
 function extractJsonObject(text: string): string {
+  // 先尝试提取代码块内容
   const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/i);
-  if (fenced?.[1]) return fenced[1].trim();
-  const start = text.indexOf("{");
-  const end = text.lastIndexOf("}");
-  if (start >= 0 && end > start) {
-    return text.slice(start, end + 1).trim();
+  const content = fenced?.[1]?.trim() || text;
+
+  // 从后往前找最后一个完整的 JSON 对象（处理嵌套结构）
+  const lastEnd = content.lastIndexOf("}");
+  if (lastEnd < 0) return "{}";
+
+  // 从 lastEnd 向前找匹配的起始 `{`（用括号计数处理嵌套）
+  let depth = 0;
+  for (let i = lastEnd; i >= 0; i--) {
+    const ch = content[i];
+    if (ch === "}") depth++;
+    else if (ch === "{") depth--;
+    if (depth === 0) {
+      return content.slice(i, lastEnd + 1).trim();
+    }
   }
   return "{}";
 }

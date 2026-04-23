@@ -146,12 +146,13 @@ export function createShoppingFlow(params: ShoppingFlowDeps): ShoppingFlow {
     }
 
     transitionStage(session, "searching", logger);
+    const query = session.intent.shop;
     await sendReply(
       session.chatId,
       "商品搜索",
-      `正在搜索商品「${session.intent.shop}」，请稍后...`,
+      `正在搜索商品「${query}」，请稍后...`,
     );
-    const searchRes = await goofish.search(session.intent.shop);
+    const searchRes = await goofish.search(query);
     if (!searchRes.success) {
       transitionStage(session, "failed", logger);
       return await sendReply(
@@ -463,6 +464,7 @@ export function createShoppingFlow(params: ShoppingFlowDeps): ShoppingFlow {
       session.intent.shop,
       session.intent.product,
       session.intent.spec,
+      "直接回我一个价格就行了，价格合适我就拍"
     ]
       .filter((item) => item.length > 0)
       .join("，");
