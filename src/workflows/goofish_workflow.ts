@@ -35,9 +35,9 @@
  */
 
 import { Agent, type WorkflowContext } from "@greaseclaw/workflow-sdk";
-import { createWorkflowApis } from "./api";
-import { createShoppingFlow } from "./libs/shopping-flow";
-import { createLogger } from "./libs/logger";
+import { createWorkflowApis } from "../api";
+import { createShoppingFlow } from "../libs/shopping-flow";
+import { createLogger } from "../libs/logger";
 
 // Main workflow entry point
 export async function execute(context: WorkflowContext) {

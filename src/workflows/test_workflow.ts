@@ -15,8 +15,8 @@
  */
 
 import { Agent, type WorkflowContext } from "@greaseclaw/workflow-sdk";
-import { buildPriceExtractPrompt } from "./libs/claude-prompts";
-import { parsePriceDecision } from "./libs/claude-parser";
+import { buildPriceExtractPrompt } from "../libs/claude-prompts";
+import { parsePriceDecision } from "../libs/claude-parser";
 
 // Main workflow entry point
 export async function execute(context: WorkflowContext) {

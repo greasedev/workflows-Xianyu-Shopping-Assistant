@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>闲鱼购物助手</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <div class="container">
+    <div class="logo">🐟</div>
+    <h1>闲鱼购物助手</h1>
+    <p class="subtitle">智能搜索 · 自动比价 · 一键下单</p>
+
+    <div class="features">
+      <div class="feature">
+        <div class="feature-title">🎯 智能搜索</div>
+        <div class="feature-desc">根据您的需求自动搜索闲鱼商品</div>
+      </div>
+      <div class="feature">
+        <div class="feature-title">💰 价格对比</div>
+        <div class="feature-desc">自动比价筛选最优价格商品</div>
+      </div>
+      <div class="feature">
+        <div class="feature-title">💬 自动询价</div>
+        <div class="feature-desc">自动与卖家沟通询价议价</div>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <input type="text" id="searchInput" placeholder="输入您想购买的商品，如：iPhone 15 北京">
+    </div>
+
+    <button class="btn" id="startBtn">开始搜索</button>
+
+    <div id="status" class="status" style="display: none;"></div>
+  </div>
+
+  <script type="module" src="./index.ts"></script>
+</body>
+</html>
