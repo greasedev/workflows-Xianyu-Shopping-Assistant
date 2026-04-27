@@ -106,9 +106,13 @@ class XianyuAgentUI {
       // 调用实际的 search API
       const result = await this.apis!.search(request.query);
 
-      if (result.success) {
-        const count = result.task?.extract_data ? JSON.parse(result.task.extract_data).items?.length || 0 : 0;
-        this.showStatus(`搜索完成！找到 ${count} 个商品`, 'success');
+      if (result.success && result.task?.extract_data) {
+        // 解析 extract_data: [{"waited":0},{"links":[...]}]
+        const data = JSON.parse(result.task.extract_data);
+        const linksItem = data.find((item: any) => item.links);
+        const links = linksItem?.links || [];
+        this.showStatus(`搜索完成！找到 ${links.length} 个商品`, 'success');
+        console.log('Search results:', links);
       } else {
         this.showStatus(result.error || '搜索失败', 'error');
       }

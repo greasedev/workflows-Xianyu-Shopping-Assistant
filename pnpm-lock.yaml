@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@greaseclaw/workflow-sdk':
-        specifier: github:greasedev/workflow-sdk#8b3cc8c
-        version: git+https://git@github.com:greasedev/workflow-sdk.git#8b3cc8cd437b506fc3c6df21dfe5dd37f7a445a0(zod@3.25.76)
+        specifier: github:greasedev/workflow-sdk#9870374
+        version: https://codeload.github.com/greasedev/workflow-sdk/tar.gz/987037426d5837f2c479ba7d4bfdcb472b0fc599(zod@3.25.76)
     devDependencies:
       '@types/node':
         specifier: ^25.5.2
@@ -376,8 +376,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@greaseclaw/workflow-sdk@git+https://git@github.com:greasedev/workflow-sdk.git#8b3cc8cd437b506fc3c6df21dfe5dd37f7a445a0':
-    resolution: {commit: 8b3cc8cd437b506fc3c6df21dfe5dd37f7a445a0, repo: git@github.com:greasedev/workflow-sdk.git, type: git}
+  '@greaseclaw/workflow-sdk@https://codeload.github.com/greasedev/workflow-sdk/tar.gz/987037426d5837f2c479ba7d4bfdcb472b0fc599':
+    resolution: {tarball: https://codeload.github.com/greasedev/workflow-sdk/tar.gz/987037426d5837f2c479ba7d4bfdcb472b0fc599}
     version: 0.0.1
     hasBin: true
     peerDependencies:
@@ -959,7 +959,7 @@ snapshots:
   '@esbuild/win32-x64@0.27.7':
     optional: true
 
-  '@greaseclaw/workflow-sdk@git+https://git@github.com:greasedev/workflow-sdk.git#8b3cc8cd437b506fc3c6df21dfe5dd37f7a445a0(zod@3.25.76)':
+  '@greaseclaw/workflow-sdk@https://codeload.github.com/greasedev/workflow-sdk/tar.gz/987037426d5837f2c479ba7d4bfdcb472b0fc599(zod@3.25.76)':
     dependencies:
       '@ai-sdk/openai': 3.0.51(zod@3.25.76)
       ai: 6.0.149(zod@3.25.76)

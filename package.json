@@ -7,10 +7,10 @@
     "build:pages": "npx tsx node_modules/@greaseclaw/workflow-sdk/bin//page-build.mjs src/pages dist/pages",
     "dev": "npx tsx node_modules/@greaseclaw/workflow-sdk/bin/workflow-dev.mjs",
     "dev:pages": "npx tsx node_modules/@greaseclaw/workflow-sdk/bin//page-dev.mjs src/pages 3000",
-    "zip": "npm run build && rm -f workflows.zip && zip -r workflows.zip src/ dist package.json tsconfig.json"
+    "zip": "npm run build && npm run build:pages && rm -f workflows.zip && zip -r workflows.zip src/ dist package.json tsconfig.json"
   },
   "dependencies": {
-    "@greaseclaw/workflow-sdk": "github:greasedev/workflow-sdk#8b3cc8c"
+    "@greaseclaw/workflow-sdk": "github:greasedev/workflow-sdk#9870374"
   },
   "devDependencies": {
     "@types/node": "^25.5.2",

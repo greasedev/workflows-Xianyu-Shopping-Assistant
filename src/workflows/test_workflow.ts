@@ -1,7 +1,7 @@
 /**
  * ---
  * name: 测试
- * description: "测试"
+ * description: "测试页面链接生成"
  *
  * use when:
  * - 测试
@@ -15,8 +15,6 @@
  */
 
 import { Agent, type WorkflowContext } from "@greaseclaw/workflow-sdk";
-import { buildPriceExtractPrompt } from "../libs/claude-prompts";
-import { parsePriceDecision } from "../libs/claude-parser";
 
 // Main workflow entry point
 export async function execute(context: WorkflowContext) {
@@ -27,23 +25,34 @@ export async function execute(context: WorkflowContext) {
   console.log("Executing workflow...");
 
   try {
-    const byAgentRaw = await agent.complete(buildPriceExtractPrompt("11.4"));
-    const byAgent = parsePriceDecision(byAgentRaw.text);
-    console.log("byAgentRaw:", byAgentRaw);
-    console.log("byAgent:", byAgent);
+    // 生成页面链接
+    const pageLink = agent.getPageLink('index', {
+      query: context.task || 'test'
+    });
+
+    console.log("Generated page link:", pageLink);
+
+    // 通过 sendText 把链接返回给用户
+    await agent.sendText(
+      context.chatId || 'test-chat',
+      '页面链接',
+      `点击以下链接打开页面：\n${pageLink}`,
+      'user'
+    );
+
+    return {
+      success: true,
+      message: "Page link generated and sent successfully",
+      pageLink: pageLink
+    };
   } catch (error) {
-    console.error("Workflow  error:", error);
+    console.error("Workflow error:", error);
     return {
       success: false,
       message: "Workflow failed",
       error: error,
     };
   }
-
-  return {
-    success: true,
-    message: "Workflow completed successfully",
-  };
 }
 // @ts-ignore
 globalThis.execute = execute;
