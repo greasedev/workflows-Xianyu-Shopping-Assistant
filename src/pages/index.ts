@@ -124,7 +124,7 @@ class XianyuAgentUI {
   }
 }
 
-// 初始化 UI
-document.addEventListener('DOMContentLoaded', () => {
+// 初始化 UI , 目前只支持 IIFE方式来初始化
+(() => {
   new XianyuAgentUI();
-});
+})();

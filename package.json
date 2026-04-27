@@ -10,7 +10,7 @@
     "zip": "npm run build && npm run build:pages && rm -f workflows.zip && zip -r workflows.zip src/ dist package.json tsconfig.json"
   },
   "dependencies": {
-    "@greaseclaw/workflow-sdk": "github:greasedev/workflow-sdk#9870374"
+    "@greaseclaw/workflow-sdk": "github:greasedev/workflow-sdk#main"
   },
   "devDependencies": {
     "@types/node": "^25.5.2",
